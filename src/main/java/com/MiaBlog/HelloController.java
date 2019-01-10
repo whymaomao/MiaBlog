@@ -8,6 +8,11 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.opensaml.core.config.InitializationException;
+import org.opensaml.core.config.InitializationService;
+import org.opensaml.core.xml.XMLObjectBuilderFactory;
+import org.opensaml.core.xml.config.XMLObjectProviderRegistrySupport;
+import org.opensaml.saml.saml2.core.Assertion;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,12 +28,18 @@ import java.util.UUID;
 
 @Controller
 public class HelloController {
+
     @RequestMapping("/hello")
     public String hello()
     {
         return "index";
     }
 
+    @RequestMapping("/test")
+    public String test()
+    {
+        return "index";
+    }
     /*
      * @description: write the QRCode to a outputstream
      * @Param content: the content of QR Code

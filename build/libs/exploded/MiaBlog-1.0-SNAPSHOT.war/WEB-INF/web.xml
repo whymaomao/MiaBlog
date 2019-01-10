@@ -22,7 +22,68 @@
     
     <servlet-mapping>
         <servlet-name>HelloWeb</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>singleSignOn</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:SingleSignOn.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>singleSignOn</servlet-name>
+        <url-pattern>/idp/singleSignOn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ConsumerServlet</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:ConsumerServlet.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ConsumerServlet</servlet-name>
+        <url-pattern>/sp/consumer</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ArtifactResolutionServlet</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:SingleSignOn.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ArtifactResolutionServlet</servlet-name>
+        <url-pattern>/idp/artifactResolutionService</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>AccessFilter</filter-name>
+        <filter-class>com.SP.AccessFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AccessFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 
 </web-app>
